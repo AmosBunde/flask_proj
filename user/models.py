@@ -2,6 +2,11 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
+def init_app(main):
+    db.app = main
+    db.init_app(main)
+    
+
 class User(db.Model):
     id = db.Column(db.Interger, primary_key=True)
     username = db.Column(db.String(255),unique = True)
