@@ -1,3 +1,5 @@
+from flask_migrate import Migrate
+
 from flask import Flask
 import models
 from routes import user_blueprint
@@ -8,6 +10,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///./database/user.db'
 models.init_app(app)
 app.register_blueprint(user_blueprint)
 
-
+migrate = Migrate(app, models.db)
 
 app.run()
