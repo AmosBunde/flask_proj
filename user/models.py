@@ -1,14 +1,15 @@
 from flask_sqlalchemy import SQLAlchemy
+from flask_login import UserMixin
 
 db = SQLAlchemy()
 
-def init_app(main):
-    db.app = main
-    db.init_app(main)
-    
+def init_app(app):
+    db.app = app
+    db.init_app(app)
+
 
 class User(db.Model):
-    id = db.Column(db.Interger, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(255),unique = True)
     password = db.Column(db.String(255))
     is_admin = db.Column(db.Boolean)
